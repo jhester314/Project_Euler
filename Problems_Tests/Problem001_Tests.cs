@@ -20,7 +20,7 @@ namespace Problems_Tests
         {
             _target = new Problem001();
         }
-        
+
         [TestCase(5, 3)]
         [TestCase(6, 8)]
         [TestCase(10, 23)]

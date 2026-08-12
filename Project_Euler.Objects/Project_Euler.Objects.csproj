@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Project_Euler.Objects</RootNamespace>
+    <AssemblyName>Project_Euler.Objects</AssemblyName>
+  </PropertyGroup>
+
+</Project>
