@@ -12,7 +12,6 @@ namespace Problems_Tests
     [TestFixture]
     public class Problem001_Tests
     {
-
         private Problem001 _target;
 
         [SetUp]
