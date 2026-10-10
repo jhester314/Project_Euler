@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <RootNamespace>Problems_Tests</RootNamespace>
-    <AssemblyName>Problems_Tests</AssemblyName>
+    <RootNamespace>Project_Euler.Objects_Tests</RootNamespace>
+    <AssemblyName>Project_Euler.Objects_Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,9 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Project_Euler.Objects\Project_Euler.Objects.csproj" />
-    <ProjectReference Include="..\Problems\Problems.csproj" />
   </ItemGroup>
 
 </Project>
-
-

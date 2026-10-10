@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Project_Euler.Objects\Project_Euler.Objects.csproj" />
-    <ProjectReference Include="..\Problems\Problems.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

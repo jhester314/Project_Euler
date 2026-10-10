@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Project_Euler.Objects
 {
-    public enum ArgType
-    {
-        Integer, 
-        PositiveInteger, 
-        Double, 
-        PositiveDouble, 
-        String, 
-        FileLocation
+  public enum ArgType
+  {
+    Integer,
+    PositiveInteger,
+    Double,
+    PositiveDouble,
+    String,
+    FileLocation
 
-    }
+  }
 }

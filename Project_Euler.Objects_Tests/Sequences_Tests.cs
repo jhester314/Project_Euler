@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 using NUnit.Framework;
-using Project_Euler.Tools;
+using Project_Euler.Objects;
 
-namespace Project_Euler.Tools_Tests
+namespace Project_Euler.Objects_Tests
 {
   [TestFixture]
   public class Sequences_Tests
