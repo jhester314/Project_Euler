@@ -1,12 +1,13 @@
 {
-    "dotnet.preferCSharpExtension": true,
-    "editor.detectIndentation": false,
+  "dotnet.preferCSharpExtension": true,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.codeLens": false,
+  "[csharp]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.formatOnSave": true,
-    "[csharp]": {
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.defaultFormatter": "ms-dotnettools.csharp"
-    }
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  }
 }
