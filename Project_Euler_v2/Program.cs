@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Project_Euler.Objects;
+using Project_Euler.Objects.Problems;
 
 namespace Project_Euler
 {
@@ -21,34 +22,29 @@ namespace Project_Euler
         }
         else
         {
-          var className = $"Problem{problemNumber:D3}";
-          var nameSpace = "Problems";
+          var className = $"Project_Euler.Objects.Problems.Problem{problemNumber:D3}";
+          // Anchor to any known type in the same assembly
+          var assembly = typeof(Problem001).Assembly;
 
-          Assembly? assembly = null;
-          try
-          {
-            assembly = Assembly.Load(nameSpace);
-          }
-          catch
-          {
-            Console.WriteLine($"Could not load assembly '{nameSpace}'.");
-          }
+          var type = assembly.GetType(className);
 
-          Type? type = assembly.GetType($"{nameSpace}.{className}");
           if (type is null)
           {
-            Console.WriteLine($"Type '{nameSpace}.{className}' not found.");
+            Console.WriteLine($"Type '{className}' not found.");
+            return;
           }
 
           if (!typeof(IProblem).IsAssignableFrom(type))
           {
             Console.WriteLine($"Type '{className}' does not implement IProblem.");
+            return;
           }
 
-          IProblem? instance = Activator.CreateInstance(type) as IProblem;
+          var instance = Activator.CreateInstance(type) as IProblem;
           if (instance is null)
           {
             Console.WriteLine($"Could not instantiate '{className}'.");
+            return;
           }
 
           if (instance != null)
