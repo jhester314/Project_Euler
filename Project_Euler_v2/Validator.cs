@@ -9,11 +9,11 @@ namespace Project_Euler
 {
   public static class Validator
   {
-    public static List<Argument> ValidateAndParseArgs(List<ArgType> argTypes, string input)
+    public static List<Argument> ValidateAndParseArgs(List<ArgType> argTypes, string? input)
     {
       List<Argument> results = new List<Argument>();
 
-      String[] args = input.Split(' ');
+      String[] args = input?.Split(' ');
       if (argTypes.Count != args.Count())
       {
         results.Add(new Argument()
@@ -32,7 +32,7 @@ namespace Project_Euler
       return results;
     }
 
-    public static Argument ValidateAndParseArg(ArgType argType, string input)
+    public static Argument ValidateAndParseArg(ArgType argType, string? input)
     {
       Argument result = new Argument();
       int parsedInt;

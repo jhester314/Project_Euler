@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using Project_Euler.Objects;
 using Project_Euler.Objects.Problems;
 
@@ -55,6 +56,7 @@ namespace Project_Euler
             var expectedArgTypes = instance.GetArgTypes();
             var actualArgs = Validator.ValidateAndParseArgs(expectedArgTypes, inputArgs);
             List<string> results;
+            TimeSpan? solveDuration = null;
 
             if (actualArgs.Any(x => !String.IsNullOrWhiteSpace(x.Error)))
             {
@@ -63,13 +65,20 @@ namespace Project_Euler
             }
             else
             {
+              var stopwatch = Stopwatch.StartNew();
               results = instance.Solve(actualArgs);
+              stopwatch.Stop();
+              solveDuration = stopwatch.Elapsed;
             }
 
             Console.WriteLine("--------------------");
             foreach (var result in results)
             {
               Console.WriteLine(result);
+            }
+            if (solveDuration.HasValue)
+            {
+              Console.WriteLine($"Execution time: {solveDuration.Value.TotalMilliseconds:F3} ms");
             }
             Console.WriteLine("--------------------\n");
 
