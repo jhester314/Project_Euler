@@ -1,0 +1,44 @@
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Project_Euler.Objects
+{
+  public class Tools
+  {
+
+    public static long GetLargestPrimeFactor(long input)
+    {
+      var factors = Factor(input);
+      long result = factors.Max();
+
+      return result;
+    }
+
+    public static List<long> Factor(long input)
+    {
+      List<long> results = new List<long>();
+
+      var sqrt = (long)System.Math.Sqrt(input);
+
+      while (input % 2 == 0)
+      {
+        results.Add(2);
+        input /= 2;
+      }
+
+      for (long i = 3; i <= sqrt; i += 2)
+      {
+        if (input % i == 0)
+        {
+          results.Add(i);
+          input /= i;
+          i -= 2;
+        }
+      }
+
+      return results;
+    }
+
+  }
+}
+
