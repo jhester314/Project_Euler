@@ -13,22 +13,31 @@ namespace Project_Euler
     {
       List<Argument> results = new List<Argument>();
 
-      String[] args = input?.Split(' ');
-      if (argTypes.Count != args.Count())
+      if (!string.IsNullOrEmpty(input))
       {
-        results.Add(new Argument()
+        String[] args = input.Split(' ');
+        if (argTypes.Count != args.Count())
         {
-          Error = String.Format("Expected arguments ({0}) and actual arguments supplied ({1}) are different.", argTypes.Count, args.Count())
-        });
+          results.Add(new Argument()
+          {
+            Error = String.Format("Expected arguments ({0}) and actual arguments supplied ({1}) are different.", argTypes.Count, args.Count())
+          });
+        }
+        else
+        {
+          for (int i = 0; i < argTypes.Count; i++)
+          {
+            results.Add(ValidateAndParseArg(argTypes[i], args[i]));
+          }
+        }
       }
       else
       {
-        for (int i = 0; i < argTypes.Count; i++)
+        results.Add(new Argument()
         {
-          results.Add(ValidateAndParseArg(argTypes[i], args[i]));
-        }
+          Error = "No arguments supplied."
+        });
       }
-
       return results;
     }
 

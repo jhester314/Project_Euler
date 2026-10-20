@@ -9,7 +9,7 @@ namespace Project_Euler.Objects
     public static long GetLargestPrimeFactor(long input)
     {
       var factors = Factor(input);
-      long result = factors.Max();
+      long result = factors.Any() ? factors.Max() : 1;
 
       return result;
     }
@@ -18,7 +18,16 @@ namespace Project_Euler.Objects
     {
       List<long> results = new List<long>();
 
-      var sqrt = (long)System.Math.Sqrt(input);
+      if (input < 0)
+      {
+        input *= -1;
+      }
+
+      if (input < 2)
+      {
+        results.Add(input);
+        return results;
+      }
 
       while (input % 2 == 0)
       {
@@ -26,6 +35,7 @@ namespace Project_Euler.Objects
         input /= 2;
       }
 
+      var sqrt = (long)System.Math.Sqrt(input);
       for (long i = 3; i <= sqrt; i += 2)
       {
         if (input % i == 0)
@@ -35,6 +45,8 @@ namespace Project_Euler.Objects
           i -= 2;
         }
       }
+
+      if (input > 1) results.Add(input);
 
       return results;
     }
