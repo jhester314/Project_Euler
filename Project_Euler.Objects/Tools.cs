@@ -36,7 +36,7 @@ namespace Project_Euler.Objects
       }
 
       var sqrt = (long)System.Math.Sqrt(input);
-      for (long i = 3; i <= sqrt; i += 2)
+      for (long i = 3; i <= sqrt && input > 1; i += 2)
       {
         if (input % i == 0)
         {

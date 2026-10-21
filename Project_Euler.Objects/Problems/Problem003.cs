@@ -8,7 +8,7 @@ namespace Project_Euler.Objects.Problems
   {
     public List<ArgType> GetArgTypes()
     {
-      return new List<ArgType>() { ArgType.PositiveInteger };
+      return new List<ArgType>() { ArgType.Long };
     }
 
     public List<string> Solve(List<Argument> args)

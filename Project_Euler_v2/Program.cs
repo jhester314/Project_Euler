@@ -50,37 +50,40 @@ namespace Project_Euler
 
           if (instance != null)
           {
-            Console.WriteLine("Enter arguments: ");
-            var inputArgs = Console.ReadLine();
+            while (!exit)
+            {
+              Console.WriteLine($"Enter input: ");
+              var inputArgs = Console.ReadLine();
 
-            var expectedArgTypes = instance.GetArgTypes();
-            var actualArgs = Validator.ValidateAndParseArgs(expectedArgTypes, inputArgs);
-            List<string> results;
-            TimeSpan? solveDuration = null;
+              var expectedArgTypes = instance.GetArgTypes();
+              var actualArgs = Validator.ValidateAndParseArgs(expectedArgTypes, inputArgs);
+              List<string> results;
+              TimeSpan? solveDuration = null;
 
-            if (actualArgs.Any(x => !String.IsNullOrWhiteSpace(x.Error)))
-            {
-              results = actualArgs.Where(x => !String.IsNullOrWhiteSpace(x.Error))
-                  .Select(x => x.Error).ToList();
-            }
-            else
-            {
-              var stopwatch = Stopwatch.StartNew();
-              results = instance.Solve(actualArgs);
-              stopwatch.Stop();
-              solveDuration = stopwatch.Elapsed;
-            }
+              if (actualArgs.Any(x => !String.IsNullOrWhiteSpace(x.Error)))
+              {
+                results = actualArgs.Where(x => !String.IsNullOrWhiteSpace(x.Error))
+                    .Select(x => x.Error).ToList();
+              }
+              else
+              {
+                var stopwatch = Stopwatch.StartNew();
+                results = instance.Solve(actualArgs);
+                stopwatch.Stop();
+                solveDuration = stopwatch.Elapsed;
+              }
 
-            Console.WriteLine("--------------------");
-            foreach (var result in results)
-            {
-              Console.WriteLine(result);
+              Console.WriteLine("----CALCULATED ANSWER----");
+              foreach (var result in results)
+              {
+                Console.WriteLine(result);
+              }
+              if (solveDuration.HasValue)
+              {
+                Console.WriteLine($"Execution time: {solveDuration.Value.TotalMilliseconds:F3} ms");
+              }
+              Console.WriteLine("--------------------\n");
             }
-            if (solveDuration.HasValue)
-            {
-              Console.WriteLine($"Execution time: {solveDuration.Value.TotalMilliseconds:F3} ms");
-            }
-            Console.WriteLine("--------------------\n");
 
           }
           else

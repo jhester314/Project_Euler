@@ -119,6 +119,24 @@ namespace Project_Euler
           }
           break;
 
+        case ArgType.Long:
+          if (long.TryParse(input, out long parsedLong))
+          {
+            result = new Argument()
+            {
+              Type = ArgType.Long,
+              Value = parsedLong
+            };
+          }
+          else
+          {
+            result = new Argument()
+            {
+              Error = String.Format("Expected {0} but was {1}", argType, input)
+            };
+          }
+          break;
+
         case ArgType.String:
           if (!String.IsNullOrWhiteSpace(input))
           {

@@ -12,6 +12,7 @@ namespace Project_Euler.Objects
     PositiveInteger,
     Double,
     PositiveDouble,
+    Long,
     String,
     FileLocation
 
