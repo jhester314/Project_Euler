@@ -16,7 +16,7 @@ namespace Project_Euler
         Console.Write("Enter problem to solve (0 to exit): ");
         var problemText = Console.ReadLine();
 
-        if (problemText is null)
+        if (String.IsNullOrEmpty(problemText))
         {
           break;
         }
