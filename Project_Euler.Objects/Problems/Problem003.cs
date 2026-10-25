@@ -1,31 +1,18 @@
-using System.Collections.Generic;
-using System.Linq;
-using Project_Euler.Objects;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_Euler.Objects.Problems
 {
-  public class Problem003 : IProblem
+  public sealed record Problem003Input([property: Range(1, long.MaxValue)] long Number);
+
+  public class Problem003 : Problem<Problem003Input, long>
   {
-    public List<ArgType> GetArgTypes()
+    public override int Number => 3;
+    public override string Name => "Largest prime factor";
+
+    public override long Solve(Problem003Input input)
     {
-      return new List<ArgType>() { ArgType.Long };
-    }
-
-    public List<string> Solve(List<Argument> args)
-    {
-      List<string> results = new List<string>();
-      long input;
-      long result = 0;
-
-      if (long.TryParse(args.First().Value.ToString(), out input))
-      {
-        result = Tools.GetLargestPrimeFactor(input);
-      }
-
-      results.Add(result.ToString());
-
-      return results;
+      var result = Tools.GetLargestPrimeFactor(input.Number);
+      return result;
     }
   }
 }
-

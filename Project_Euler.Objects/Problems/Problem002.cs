@@ -1,39 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Numerics;
 
 namespace Project_Euler.Objects.Problems
 {
-  public class Problem002 : IProblem
+  public sealed record Problem002Input([property: Range(1, int.MaxValue)] int Limit);
+
+  public class Problem002 : Problem<Problem002Input, BigInteger>
   {
-    public List<ArgType> GetArgTypes()
-    {
-      return new List<ArgType>() { ArgType.PositiveInteger };
-    }
+    public override int Number => 2;
+    public override string Name => "Even Fibonacci numbers";
 
-    public List<string> Solve(List<Argument> input)
+    public override BigInteger Solve(Problem002Input input)
     {
-      List<string> results = new List<string>();
-      int limit;
       BigInteger result = 0;
-      Sequences sequences = new Sequences();
+      var sequences = new Sequences();
 
-      if (int.TryParse(input.First().Value.ToString(), out limit))
+      BigInteger fib = 1;
+      for (var i = 1; fib <= input.Limit; i++)
       {
-        BigInteger fib = 1;
-        for (int i = 1; fib <= limit; i++)
-        {
-          if (fib % 2 == 0)
-            result += fib;
+        if (fib % 2 == 0)
+          result += fib;
 
-          fib = sequences.GetFibonacciTerm(i);
-        }
+        fib = sequences.GetFibonacciTerm(i);
       }
 
-      results.Add(result.ToString());
-
-      return results;
+      return result;
     }
-
   }
 }

@@ -1,32 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Project_Euler.Objects.Problems
 {
-  public class Problem001 : IProblem
+  public sealed record Problem001Input([property: Range(1, int.MaxValue)] int Limit);
+
+  public sealed class Problem001 : Problem<Problem001Input, int>
   {
-    public List<ArgType> GetArgTypes()
-    {
-      return new List<ArgType>() { ArgType.PositiveInteger };
-    }
+    public override int Number => 1;
+    public override string Name => "Multiples of 3 or 5";
 
-    public List<string> Solve(List<Argument> input)
+    public override int Solve(Problem001Input input)
     {
-      List<string> results = new List<string>();
-      int limit;
-      int result = 0;
-
-      if (int.TryParse(input.First().Value.ToString(), out limit))
+      var total = 0;
+      for (var i = 1; i < input.Limit; i++)
       {
-        for (int i = 1; i < limit; i++)
-        {
-          if ((i % 3 == 0) || (i % 5 == 0))
-            result += i;
-        }
+        if ((i % 3 == 0) || (i % 5 == 0))
+          total += i;
       }
 
-      results.Add(result.ToString());
-      return results;
+      return total;
     }
   }
 }

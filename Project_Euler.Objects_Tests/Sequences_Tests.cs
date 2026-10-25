@@ -7,7 +7,7 @@ namespace Project_Euler.Objects_Tests
   [TestFixture]
   public class Sequences_Tests
   {
-    private Sequences _target;
+    private Sequences _target = null!;
 
     [SetUp]
     public void SetUp()

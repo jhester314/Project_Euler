@@ -1,7 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
+using System.ComponentModel.DataAnnotations;
 using Project_Euler.Objects;
-using Project_Euler.Objects.Problems;
 
 namespace Project_Euler
 {
@@ -9,90 +12,110 @@ namespace Project_Euler
   {
     static void Main(string[] args)
     {
-      bool exit = false;
+      var problems = DiscoverProblems();
 
-      while (!exit)
+      while (true)
       {
-        int problemNumber = 0;
-        Console.WriteLine("Enter problem to solve: ");
-        var inputProblem = Console.ReadLine();
+        Console.Write("Enter problem to solve (0 to exit): ");
+        var problemText = Console.ReadLine();
 
-        if (!int.TryParse(inputProblem, out problemNumber) || problemNumber <= 0)
+        if (problemText is null)
         {
-          exit = true;
+          break;
         }
-        else
+
+        if (!int.TryParse(problemText, out var problemNumber))
         {
-          var className = $"Project_Euler.Objects.Problems.Problem{problemNumber:D3}";
-          // Anchor to any known type in the same assembly
-          var assembly = typeof(Problem001).Assembly;
+          Console.WriteLine("Please enter a valid problem number.");
+          continue;
+        }
 
-          var type = assembly.GetType(className);
+        if (problemNumber <= 0)
+        {
+          break;
+        }
 
-          if (type is null)
+        if (!problems.TryGetValue(problemNumber, out var problem))
+        {
+          Console.WriteLine($"Problem {problemNumber:D3} has not been implemented.");
+          continue;
+        }
+
+        Console.WriteLine($"Selected Problem {problem.Number:D3}: {problem.Name}");
+
+        while (true)
+        {
+          Console.Write("Enter input values (blank to choose another problem): ");
+          var input = Console.ReadLine();
+
+          if (input is null)
           {
-            Console.WriteLine($"Type '{className}' not found.");
+            Console.WriteLine("Exiting..");
             return;
           }
 
-          if (!typeof(IProblem).IsAssignableFrom(type))
+          if (string.IsNullOrWhiteSpace(input))
           {
-            Console.WriteLine($"Type '{className}' does not implement IProblem.");
-            return;
+            break;
           }
 
-          var instance = Activator.CreateInstance(type) as IProblem;
-          if (instance is null)
+          try
           {
-            Console.WriteLine($"Could not instantiate '{className}'.");
-            return;
+            var stopwatch = Stopwatch.StartNew();
+            var result = problem.SolveFromInput(input);
+            stopwatch.Stop();
+
+            Console.WriteLine("----CALCULATED ANSWER----");
+            Console.WriteLine(result);
+            Console.WriteLine($"Execution time: {stopwatch.Elapsed.TotalMilliseconds:F3} ms");
+            Console.WriteLine("--------------------\n");
           }
-
-          if (instance != null)
+          catch (FormatException exception)
           {
-            while (!exit)
-            {
-              Console.WriteLine($"Enter input: ");
-              var inputArgs = Console.ReadLine();
-
-              var expectedArgTypes = instance.GetArgTypes();
-              var actualArgs = Validator.ValidateAndParseArgs(expectedArgTypes, inputArgs);
-              List<string> results;
-              TimeSpan? solveDuration = null;
-
-              if (actualArgs.Any(x => !String.IsNullOrWhiteSpace(x.Error)))
-              {
-                results = actualArgs.Where(x => !String.IsNullOrWhiteSpace(x.Error))
-                    .Select(x => x.Error).ToList();
-              }
-              else
-              {
-                var stopwatch = Stopwatch.StartNew();
-                results = instance.Solve(actualArgs);
-                stopwatch.Stop();
-                solveDuration = stopwatch.Elapsed;
-              }
-
-              Console.WriteLine("----CALCULATED ANSWER----");
-              foreach (var result in results)
-              {
-                Console.WriteLine(result);
-              }
-              if (solveDuration.HasValue)
-              {
-                Console.WriteLine($"Execution time: {solveDuration.Value.TotalMilliseconds:F3} ms");
-              }
-              Console.WriteLine("--------------------\n");
-            }
-
+            Console.WriteLine($"Invalid input: {exception.Message}");
           }
-          else
+          catch (ValidationException exception)
           {
-            Console.WriteLine("{0} has not been implemented yet. \n", className);
+            Console.WriteLine($"Invalid input: {exception.Message}");
           }
         }
       }
+
       Console.WriteLine("Exiting..");
+    }
+
+    private static Dictionary<int, IProblem> DiscoverProblems()
+    {
+      var problems = new Dictionary<int, IProblem>();
+      var problemTypes = typeof(IProblem).Assembly
+        .GetTypes()
+        .Where(type =>
+          !type.IsAbstract &&
+          !type.IsInterface &&
+          typeof(IProblem).IsAssignableFrom(type));
+
+      foreach (var problemType in problemTypes)
+      {
+        if (Activator.CreateInstance(problemType) is not IProblem problem)
+        {
+          throw new InvalidOperationException(
+            $"Could not create problem type '{problemType.FullName}'.");
+        }
+
+        if (problem.Number <= 0)
+        {
+          throw new InvalidOperationException(
+            $"Problem type '{problemType.FullName}' must have a valid problem number.");
+        }
+
+        if (!problems.TryAdd(problem.Number, problem))
+        {
+          throw new InvalidOperationException(
+            $"More than one problem exists with problem number {problem.Number:D3}.");
+        }
+      }
+
+      return problems;
     }
   }
 }

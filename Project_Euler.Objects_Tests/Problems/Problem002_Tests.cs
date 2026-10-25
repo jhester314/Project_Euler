@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Numerics;
 using NUnit.Framework;
-using Project_Euler.Objects;
 using Project_Euler.Objects.Problems;
 
 namespace Project_Euler.Objects_Tests
@@ -9,7 +7,7 @@ namespace Project_Euler.Objects_Tests
   [TestFixture]
   public class Problem002_Tests
   {
-    private Problem002 _target;
+    private Problem002 _target = null!;
 
     [SetUp]
     public void SetUp()
@@ -21,18 +19,19 @@ namespace Project_Euler.Objects_Tests
     [TestCase(3, 2)]
     [TestCase(10, 10)]
     [TestCase(90, 44)]
-    public void SolveReturnsExpectedValues(int input, int expected)
+    public void SolveReturnsExpectedValues(int input, BigInteger expected)
     {
-      var args = new List<Argument>()
-            {
-                new Argument()
-                {
-                    Type = ArgType.PositiveInteger,
-                    Value = input
-                }
-            };
-      var result = _target.Solve(args);
-      Assert.AreEqual(expected.ToString(), result.First());
+      var result = _target.Solve(new Problem002Input(input));
+
+      Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void SolveFromInputBindsRecordAndReturnsAnswer()
+    {
+      var result = _target.SolveFromInput("10");
+
+      Assert.That(result, Is.EqualTo("10"));
     }
 
   }

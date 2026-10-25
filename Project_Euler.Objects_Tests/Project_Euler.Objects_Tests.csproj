@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
     <RootNamespace>Project_Euler.Objects_Tests</RootNamespace>
     <AssemblyName>Project_Euler.Objects_Tests</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
