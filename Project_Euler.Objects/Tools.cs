@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,6 +49,19 @@ namespace Project_Euler.Objects
 
       if (input > 1) results.Add(input);
 
+      return results;
+    }
+
+    public static Dictionary<long, int> FactorWithDistinctCounts(long input)
+    {
+      var results = new Dictionary<long, int>();
+      
+      var factors = Factor(input);
+      foreach(var factor in factors.Distinct())
+      {
+        results.Add(factor, factors.Count(x => x == factor));        
+      }
+      
       return results;
     }
 

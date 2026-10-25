@@ -21,7 +21,7 @@ namespace Project_Euler.Objects_Tests
     [TestCase(11, 121)]
     [TestCase(99, 9009)]
     [TestCase(999, 906609)]
-    public void Solve004ReturnsExpectedValues(int input, int expected)
+    public void Solve004_ReturnsExpectedValues(int input, int expected)
     {
       var result = _target.Solve(new Problem004Input(input));
 
@@ -29,7 +29,7 @@ namespace Project_Euler.Objects_Tests
     }
 
     [Test]
-    public void Solve004FromInputReturnsCorrectAnswer()
+    public void Solve004FromInput_ReturnsCorrectAnswer()
     {
       var result = _target.SolveFromInput("99");
 

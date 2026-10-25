@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Project_Euler.Objects;
 
@@ -21,6 +23,7 @@ namespace Project_Euler.Objects_Tests
       Assert.That(results, Is.EqualTo(expected));
     }
 
+
     [TestCase(1, new long[] { 1 })]
     [TestCase(2, new long[] { 2 })]
     [TestCase(3, new long[] { 3 })]
@@ -40,6 +43,26 @@ namespace Project_Euler.Objects_Tests
       Assert.That(results, Is.EqualTo(expected));
     }
     
+    
+    private static IEnumerable<TestCaseData> FactorWithDistinctCountCases()
+    {
+      yield return new TestCaseData(2L, new Dictionary<long, int> { { 2L, 1 } });
+      yield return new TestCaseData(3L, new Dictionary<long, int> { { 3L, 1 } });
+      yield return new TestCaseData(6L, new Dictionary<long, int> { { 2L, 1 }, { 3L, 1 } });
+      yield return new TestCaseData(8L, new Dictionary<long, int> { { 2L, 3 } });
+      yield return new TestCaseData(9L, new Dictionary<long, int> { { 3L, 2 } });
+      yield return new TestCaseData(36L, new Dictionary<long, int> { {2L, 2}, { 3L, 2 } });
+      yield return new TestCaseData(72L, new Dictionary<long, int> { {2L, 3}, { 3L, 2 } });
+    }
+    
+    [TestCaseSource(nameof(FactorWithDistinctCountCases))]
+    public void FactorWithDistinctCount_ReturnsCorrectResults(long input, Dictionary<long, int> expected)
+    {
+      var results = Tools.FactorWithDistinctCounts(input);
+      Assert.That(results, Is.EqualTo(expected));
+    }
+    
+    
     [TestCase(-1, 0)]
     [TestCase(0, 0)]
     [TestCase(1, 1)]
@@ -51,6 +74,7 @@ namespace Project_Euler.Objects_Tests
       var results = Tools.GetLargestPalindromeProduct(input);
       Assert.That(results, Is.EqualTo(expected));
     }
+    
     
     [TestCase(-1, false)]
     [TestCase(0, true)]

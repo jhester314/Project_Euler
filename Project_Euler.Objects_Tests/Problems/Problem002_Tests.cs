@@ -19,7 +19,7 @@ namespace Project_Euler.Objects_Tests
     [TestCase(3, 2)]
     [TestCase(10, 10)]
     [TestCase(90, 44)]
-    public void Solve002ReturnsExpectedValues(int input, int expected)
+    public void Solve002_ReturnsExpectedValues(int input, int expected)
     {
       var result = _target.Solve(new Problem002Input(input));
 
@@ -27,7 +27,7 @@ namespace Project_Euler.Objects_Tests
     }
 
     [Test]
-    public void Solve002FromInputBindsRecordAndReturnsAnswer()
+    public void Solve002FromInput_BindsRecordAndReturnsAnswer()
     {
       var result = _target.SolveFromInput("10");
 
