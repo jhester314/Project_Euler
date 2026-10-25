@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
+﻿using System.Diagnostics;
 using System.ComponentModel.DataAnnotations;
 using Project_Euler.Objects;
 
@@ -12,6 +8,7 @@ namespace Project_Euler
   {
     static void Main(string[] args)
     {
+
       var problems = DiscoverProblems();
 
       while (true)
