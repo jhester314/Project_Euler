@@ -19,15 +19,15 @@ namespace Project_Euler.Objects_Tests
     [TestCase(3, 2)]
     [TestCase(10, 10)]
     [TestCase(90, 44)]
-    public void SolveReturnsExpectedValues(int input, BigInteger expected)
+    public void Solve002ReturnsExpectedValues(int input, int expected)
     {
       var result = _target.Solve(new Problem002Input(input));
 
-      Assert.That(result, Is.EqualTo(expected));
+      Assert.That(result, Is.EqualTo(new BigInteger(expected)));
     }
 
     [Test]
-    public void SolveFromInputBindsRecordAndReturnsAnswer()
+    public void Solve002FromInputBindsRecordAndReturnsAnswer()
     {
       var result = _target.SolveFromInput("10");
 

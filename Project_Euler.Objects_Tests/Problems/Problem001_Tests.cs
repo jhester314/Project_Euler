@@ -17,7 +17,7 @@ namespace Project_Euler.Objects_Tests
     [TestCase(5, 3)]
     [TestCase(6, 8)]
     [TestCase(10, 23)]
-    public void SolveReturnsExpectedValues(int limit, int expected)
+    public void Solve001ReturnsExpectedValues(int limit, int expected)
     {
       var result = _target.Solve(new Problem001Input(limit));
 
@@ -25,11 +25,13 @@ namespace Project_Euler.Objects_Tests
     }
 
     [Test]
-    public void SolveFromInputBindsRecordAndReturnsAnswer()
+    public void Solve001FromInputBindsRecordAndReturnsAnswer()
     {
-      var result = _target.SolveFromInput("10");
+      var input = "10";
+      var expected = "23";
+      var result = _target.SolveFromInput(input);
 
-      Assert.That(result, Is.EqualTo("23"));
+      Assert.That(result, Is.EqualTo(expected));
     }
 
   }

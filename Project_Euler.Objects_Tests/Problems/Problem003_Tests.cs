@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Project_Euler.Objects.Problems;
 
-namespace Project_Euler.Objects.Tests
+namespace Project_Euler.Objects_Tests
 {
   [TestFixture]
   public class Problem003_Tests
@@ -24,15 +24,15 @@ namespace Project_Euler.Objects.Tests
     [TestCase(9, 3)]
     [TestCase(10, 5)]
     [TestCase(13195, 29)]
-    public void SolveReturnsExpectedValues(int input, long expected)
+    public void Solve003ReturnsExpectedValues(int input, long expected)
     {
       var result = _target.Solve(new Problem003Input(input));
 
-      Assert.That(result, Is.EqualTo(expected.ToString()));
+      Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
-    public void SolveFromInputBindsRecordAndReturnsAnswer()
+    public void Solve003FromInputBindsRecordAndReturnsAnswer()
     {
       var result = _target.SolveFromInput("13195");
 

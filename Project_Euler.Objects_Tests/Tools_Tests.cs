@@ -18,7 +18,7 @@ namespace Project_Euler.Objects_Tests
     public void GetLargestPrimeFactor_ReturnsCorrectResult_Test(long input, long expected)
     {
       var results = Tools.GetLargestPrimeFactor(input);
-      Assert.AreEqual(expected, results);
+      Assert.That(results, Is.EqualTo(expected));
     }
 
     [TestCase(1, new long[] { 1 })]
@@ -37,7 +37,39 @@ namespace Project_Euler.Objects_Tests
     public void Factor_ReturnsCorrectResult_Test(long input, long[] expected)
     {
       var results = Tools.Factor(input);
-      Assert.AreEqual(expected, results);
+      Assert.That(results, Is.EqualTo(expected));
     }
+    
+    [TestCase(-1, 0)]
+    [TestCase(0, 0)]
+    [TestCase(1, 1)]
+    [TestCase(9, 9)]
+    [TestCase(11, 121)]
+    [TestCase(99, 9009)]
+    public void GetLargestPalindromeProduct_ReturnsCorrectResult(int input, int expected)
+    {
+      var results = Tools.GetLargestPalindromeProduct(input);
+      Assert.That(results, Is.EqualTo(expected));
+    }
+    
+    [TestCase(-1, false)]
+    [TestCase(0, true)]
+    [TestCase(1, true)]
+    [TestCase(9, true)]
+    [TestCase(10, false)]
+    [TestCase(11, true)]
+    [TestCase(100, false)]
+    [TestCase(101, true)]
+    [TestCase(111, true)]
+    [TestCase(112, false)]
+    [TestCase(121, true)]
+    [TestCase(1231, false)]
+    [TestCase(12321, true)]
+    public void IsPalindrome_ReturnsCorrectResult(int input, bool expected)
+    {
+      var results = Tools.IsPalindrome(input);
+      Assert.That(results, Is.EqualTo(expected));
+    }    
+    
   }
 }
