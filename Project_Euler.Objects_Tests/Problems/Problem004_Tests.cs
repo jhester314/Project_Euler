@@ -20,6 +20,7 @@ namespace Project_Euler.Objects_Tests
     [TestCase(9, 9)]
     [TestCase(11, 121)]
     [TestCase(99, 9009)]
+    [TestCase(999, 906609)]
     public void Solve004ReturnsExpectedValues(int input, int expected)
     {
       var result = _target.Solve(new Problem004Input(input));
