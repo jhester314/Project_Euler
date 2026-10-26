@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Project_Euler.Objects;
@@ -60,6 +59,42 @@ namespace Project_Euler.Objects_Tests
     {
       var results = Tools.FactorWithDistinctCounts(input);
       Assert.That(results, Is.EqualTo(expected));
+    }
+    
+    
+    [TestCase(1, false)]
+    [TestCase(2, true)]
+    [TestCase(3, true)]
+    [TestCase(4, false)]
+    [TestCase(5, true)]
+    [TestCase(6, false)]
+    [TestCase(7, true)]
+    [TestCase(8, false)]
+    [TestCase(9, false)]
+    [TestCase(10, false)]
+    [TestCase(11, true)]
+    [TestCase(13, true)]
+    [TestCase(15, false)]
+    [TestCase(17, true)]
+    [TestCase(19, true)]
+    [TestCase(21, false)]
+    [TestCase(23, true)]
+    [TestCase(25, false)]
+    [TestCase(27, false)]
+    [TestCase(29, true)]
+    [TestCase(30, false)]
+    [TestCase(31, true)]
+    [TestCase(33, false)]
+    [TestCase(35, false)]
+    [TestCase(37, true)]
+    [TestCase(49, false)]
+    [TestCase(101, true)]
+    [TestCase(111, false)]
+    [TestCase(121, false)]
+    public void IsPrime_ReturnsCorrectResult(int input, bool expected)
+    {
+      var result = Tools.IsPrime(input);
+      Assert.That(result, Is.EqualTo(expected));
     }
     
     

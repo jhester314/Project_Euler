@@ -13,7 +13,6 @@ namespace Project_Euler.Objects.Problems
     public override BigInteger Solve(Problem002Input input)
     {
       BigInteger result = 0;
-      var sequences = new Sequences();
 
       BigInteger fib = 1;
       for (var i = 1; fib <= input.Limit; i++)
@@ -21,7 +20,7 @@ namespace Project_Euler.Objects.Problems
         if (fib % 2 == 0)
           result += fib;
 
-        fib = sequences.GetFibonacciTerm(i);
+        fib = Sequences.GetNthFibonacciTerm(i);
       }
 
       return result;

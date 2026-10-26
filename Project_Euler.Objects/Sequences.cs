@@ -2,12 +2,12 @@
 
 namespace Project_Euler.Objects
 {
-  public class Sequences
+  public static class Sequences
   {
-    public BigInteger GetFibonacciTerm(int input)
+    public static BigInteger GetNthFibonacciTerm(int n)
     {
       BigInteger result = 0;
-      if (input < 3)
+      if (n < 3)
       {
         result = 1;
       }
@@ -15,15 +15,38 @@ namespace Project_Euler.Objects
       {
         BigInteger n_2 = 1;
         BigInteger n_1 = 1;
-        result = 2;
-        for (int i = 4; i <= input; i++)
+        for (int i = 3; i <= n; i++)
         {
-          n_2 = n_1;
-          n_1 = result;
           result = n_2 + n_1;
+          n_2 = n_1;
+          n_1 = result;          
         }
       }
       return result;
     }
+  
+    public static int GetNthPrime(int n)
+    {
+      var result = 1;
+            
+      if (n == 1)
+      {
+        result = 2;
+      }
+      else 
+      {
+        var primeCount = 1;        
+        for (int i = 3; primeCount < n; i += 2)
+        {
+          if (Tools.IsPrime(i))
+          {
+            primeCount++;
+            result = i;
+          }
+        }
+      }
+      return result;
+    }
+  
   }
 }

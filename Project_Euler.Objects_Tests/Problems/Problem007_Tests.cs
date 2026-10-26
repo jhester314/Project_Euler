@@ -14,11 +14,17 @@ namespace Project_Euler.Objects_Tests
       _target = new Problem007();
     }
     
-    [TestCase(1, 0)]
+    [TestCase(1, 2)]
+    [TestCase(2, 3)]
+    [TestCase(3, 5)]
+    [TestCase(4, 7)]
+    [TestCase(5, 11)]
+    [TestCase(6, 13)]
+    [TestCase(10001, 104743)]
     public void Solve007_ReturnsExpectedResults(int input, int expected)
     {
       var result = _target.Solve(new Problem007Input(input));
-      Assert.That(result, Is.EqualTo(result));
+      Assert.That(result, Is.EqualTo(expected));
     } 
     
   }  

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Project_Euler.Objects
 {
-  public class Tools
+  public static class Tools
   {
 
     public static long GetLargestPrimeFactor(long input)
@@ -63,6 +63,38 @@ namespace Project_Euler.Objects
       }
       
       return results;
+    }
+
+    public static bool IsPrime(long input)
+    {
+      var result = false;
+      
+      if (input < 2)
+      {
+        result = false;
+      }
+      else if (input == 2 || input == 3 || input == 5)
+      {
+        result = true;
+      }
+      else if (input % 2 == 0 || input % 3 == 0)
+      {
+        result = false;
+      }
+      else
+      {
+        result = true;
+        for(long i = 5; i <= input/i; i += 2)
+        {          
+          if (input % i == 0)
+          {
+            result = false;
+            break;
+          }          
+        }
+      }      
+      
+      return result;
     }
 
     public static int GetLargestPalindromeProduct(int limit)
