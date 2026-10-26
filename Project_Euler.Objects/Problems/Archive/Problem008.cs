@@ -36,7 +36,7 @@ namespace Project_Euler.Objects.Problems
         if (tempResult > result)
         {
           result = tempResult;
-          Console.WriteLine($"Updated Result: {subString} => {result}");
+          //Console.WriteLine($"Updated Result: {subString} => {result}");
         }          
         
         index++;

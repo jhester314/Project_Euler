@@ -14,17 +14,17 @@ namespace Project_Euler.Objects.Problems
     {
       var result = 0;
     
-      for (int a = input.Limit - 2; a > 0; a--)
+      for (int c = input.Limit - 2; c > 0; c--)
       {
-        for (int b = a-1; b > 0; b--)
+        for (int b = input.Limit - c; b > 0; b--)
         {
-          for (int c = b; c > 0; c--)
+          for (int a = b; a > 0; a--)
           {
-            if (a + b + c == 1000)
-              if (Math.Pow(b, 2) + Math.Pow(c, 2) == Math.Pow(a, 2))
+            if (a + b + c == input.Limit)
+              if (Math.Pow(a, 2) + Math.Pow(b, 2) == Math.Pow(c, 2))
               {
-                Console.WriteLine($"Solution found: c: {c} | b: {b} | a: {a}");  
-                Console.WriteLine($"Product: {a * b * c}");
+                // Console.WriteLine($"Solution found: a: {a} | b: {b} | c: {c}");  
+                // Console.WriteLine($"Product: {a * b * c}");
                 result = a*b*c;
               }            
           }
