@@ -130,5 +130,17 @@ namespace Project_Euler.Objects_Tests
       Assert.That(results, Is.EqualTo(expected));
     }    
     
+    
+    [TestCase("1", 1)]
+    [TestCase("11", 1)]
+    [TestCase("12", 2)]
+    [TestCase("123", 6)]
+    [TestCase("9989", 5832)]
+    public void GetProductFromIntString_ReturnsCorrectResult(string input, long expected)
+    {
+      var result = Tools.GetProductFromIntString(input);
+      Assert.That(result, Is.EqualTo(expected));
+    }
+    
   }
 }

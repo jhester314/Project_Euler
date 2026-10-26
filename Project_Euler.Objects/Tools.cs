@@ -139,6 +139,26 @@ namespace Project_Euler.Objects
       return result;
     }
 
+    public static long GetProductFromIntString(string input)
+    {
+      long result = 1;
+      var digits = new List<int>();
+      
+      for(int i = 0; i < input.Length; i++)
+      {
+        int j = 0;
+        if (int.TryParse(input.Substring(i, 1), out j))
+        {
+          if (j > 0)
+            digits.Add(j);
+        }        
+      }
+      
+      foreach(var d in digits)
+        result *= d;
+      
+      return result;
+    }
 
   }
 }
