@@ -7,6 +7,9 @@ namespace Project_Euler.Objects_Tests
   [TestFixture]
   public class Tools_Tests
   {
+    
+    #region Prime factor stuff
+    
     [TestCase(1, 1)]
     [TestCase(2, 2)]
     [TestCase(3, 3)]
@@ -97,6 +100,7 @@ namespace Project_Euler.Objects_Tests
       Assert.That(result, Is.EqualTo(expected));
     }
     
+    #endregion
     
     [TestCase(-1, 0)]
     [TestCase(0, 0)]
@@ -130,6 +134,7 @@ namespace Project_Euler.Objects_Tests
       Assert.That(results, Is.EqualTo(expected));
     }    
     
+    #region String manipulation stuff
     
     [TestCase("1", 1)]
     [TestCase("11", 1)]
@@ -141,6 +146,27 @@ namespace Project_Euler.Objects_Tests
       var result = Tools.GetProductFromIntString(input);
       Assert.That(result, Is.EqualTo(expected));
     }
+    
+    [Test]
+    public void ConvertBlobToMatrix_ReturnsSquareMatrix()
+    {
+      var blob = @" 08 02 22 
+                    49 49 99 
+                    81 49 31
+                    52 70 95";
+      
+      var result = Tools.ConvertBlobToMatrix(blob);
+      
+      Assert.That(result.Length, Is.EqualTo(12));
+      Assert.That(result.GetLength(0), Is.EqualTo(4));
+      Assert.That(result.GetLength(1), Is.EqualTo(3));
+      Assert.That(result[0, 0], Is.EqualTo(8));
+      Assert.That(result[1, 2], Is.EqualTo(99));
+      Assert.That(result[2, 1], Is.EqualTo(49));
+      Assert.That(result[3, 0], Is.EqualTo(52));
+    }
+    
+    #endregion
     
   }
 }
