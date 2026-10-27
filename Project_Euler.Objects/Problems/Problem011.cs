@@ -50,7 +50,7 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            Console.WriteLine($"Result updated (vertical): {result} | row: {row} | column: {column}");
+            //Console.WriteLine($"Result updated (vertical): {result} | row: {row} | column: {column}");
           }
         }
       }
@@ -68,7 +68,7 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            Console.WriteLine($"Result updated (horizontal): {result} | row: {row} | column: {column}");
+            //Console.WriteLine($"Result updated (horizontal): {result} | row: {row} | column: {column}");
           }
         }
       }
@@ -86,7 +86,7 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            Console.WriteLine($"Result updated (diag down & right): {result} | row: {row} | column: {column}");
+            //Console.WriteLine($"Result updated (diag down & right): {result} | row: {row} | column: {column}");
           }
         }
       }
@@ -104,16 +104,12 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            Console.WriteLine($"Result updated (diag down & left): {result} | row: {row} | column: {column}");
+            //Console.WriteLine($"Result updated (diag down & left): {result} | row: {row} | column: {column}");
           }
         }
       }
 
       return result;
     }
-    
-    
-    
-    
   }
 }

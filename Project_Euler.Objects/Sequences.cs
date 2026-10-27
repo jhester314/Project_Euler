@@ -50,9 +50,9 @@ namespace Project_Euler.Objects
   
     public static int GetNthTriangleTerm(int n)
     {
-      var result = 1;
+      var result = 0;
       
-      for(int i = 2; i < n; i++)
+      for(int i = 1; i <= n; i++)
         result += i;
       
       return result;

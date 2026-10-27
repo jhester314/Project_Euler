@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -13,7 +14,7 @@ namespace Project_Euler.Objects.Problems
     public override int Solve(Problem012Input input)
     {
       var result = 0;
-      var triangleNum = 0;
+      var triangleNum = 1;
       
       if (input.DivisorCount < 2)
       {
@@ -21,15 +22,26 @@ namespace Project_Euler.Objects.Problems
       }
       else
       {
-        for(int i = 1; result == 0; i++)
+        for(int i = 2; result == 0; i++)
         {
           triangleNum += i;
           
           var factorList = Tools.FactorWithDistinctCounts(triangleNum);
           
-          var numberOfDivisors = factorList.Sum(x => x.Value);
-          if (numberOfDivisors > input.DivisorCount)
-            result = triangleNum; 
+          var numberOfDivisors = 1;
+          foreach(var factor in factorList)
+          {
+            numberOfDivisors *= (factor.Value + 1);
+          }
+          
+          if (numberOfDivisors >= input.DivisorCount)
+          {
+            result = triangleNum;
+            //Console.WriteLine($"i: {i}  | triangleNumber: {triangleNum} | divisors: {numberOfDivisors}");
+          }
+                      
+          // if (i % 10 == 0)
+          //   Console.WriteLine($"i: {i}  | triangleNumber: {triangleNum} | divisors: {numberOfDivisors}");
         }
       }      
 

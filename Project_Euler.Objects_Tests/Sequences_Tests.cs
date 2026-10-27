@@ -33,7 +33,7 @@ namespace Project_Euler.Objects_Tests
     }
     
     
-    [TestCase(0, 1)]
+    [TestCase(0, 0)]
     [TestCase(1, 1)]
     [TestCase(2, 3)]
     [TestCase(3, 6)]
