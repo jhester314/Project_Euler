@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Project_Euler.Objects.Problems
 {
@@ -10,8 +11,10 @@ namespace Project_Euler.Objects.Problems
     public override string Name => "Largest prime factor";
 
     public override long Solve(Problem003Input input)
-    {
-      var result = Tools.GetLargestPrimeFactor(input.Number);
+    {      
+      var factors = Tools.Factor(input.Number);
+      long result = factors.Any() ? factors.Max() : 1;
+      
       return result;
     }
   }

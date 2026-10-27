@@ -10,22 +10,6 @@ namespace Project_Euler.Objects_Tests
     
     #region Prime factor stuff
     
-    [TestCase(1, 1)]
-    [TestCase(2, 2)]
-    [TestCase(3, 3)]
-    [TestCase(4, 2)]
-    [TestCase(6, 3)]
-    [TestCase(8, 2)]
-    [TestCase(9, 3)]
-    [TestCase(13195, 29)]
-    [TestCase(600851475143, 6857)]
-    public void GetLargestPrimeFactor_ReturnsCorrectResult_Test(long input, long expected)
-    {
-      var results = Tools.GetLargestPrimeFactor(input);
-      Assert.That(results, Is.EqualTo(expected));
-    }
-
-
     [TestCase(1, new long[] { 1 })]
     [TestCase(2, new long[] { 2 })]
     [TestCase(3, new long[] { 3 })]

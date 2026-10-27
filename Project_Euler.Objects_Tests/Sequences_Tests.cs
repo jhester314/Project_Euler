@@ -14,7 +14,7 @@ namespace Project_Euler.Objects_Tests
     [TestCase(5, 5)]
     [TestCase(10, 55)]
     [TestCase(12, 144)]
-    public void Fibonacci_ReturnsCorrectResult_Test(int n, int expected)
+    public void Fibonacci_ReturnsCorrectResult(int n, int expected)
     {
       var results = Sequences.GetNthFibonacciTerm(n);
       Assert.AreEqual((BigInteger)expected, results);
@@ -26,9 +26,22 @@ namespace Project_Euler.Objects_Tests
     [TestCase(4, 7)]
     [TestCase(5, 11)]
     [TestCase(6, 13)]
-    public void GetNthPrime(int n, int expected)
+    public void GetNthPrime_ReturnsCorrectResult(int n, int expected)
     {
       var results = Sequences.GetNthPrime(n);
+      Assert.That(results, Is.EqualTo(expected));
+    }
+    
+    
+    [TestCase(0, 1)]
+    [TestCase(1, 1)]
+    [TestCase(2, 3)]
+    [TestCase(3, 6)]
+    [TestCase(4, 10)]
+    [TestCase(7, 28)]
+    public void GetNthTriangleTerm_ReturnsCorrectResult(int n, int expected)
+    {
+      var results = Sequences.GetNthTriangleTerm(n);
       Assert.That(results, Is.EqualTo(expected));
     }
 

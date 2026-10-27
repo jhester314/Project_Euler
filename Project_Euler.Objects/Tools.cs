@@ -9,14 +9,6 @@ namespace Project_Euler.Objects
 
     #region Prime factor stuff
     
-    public static long GetLargestPrimeFactor(long input)
-    {
-      var factors = Factor(input);
-      long result = factors.Any() ? factors.Max() : 1;
-
-      return result;
-    }
-
     public static List<long> Factor(long input)
     {
       List<long> results = new List<long>();
@@ -38,8 +30,7 @@ namespace Project_Euler.Objects
         input /= 2;
       }
 
-      var sqrt = (long)System.Math.Sqrt(input);
-      for (long i = 3; i <= sqrt && input > 1; i += 2)
+      for (long i = 3; i <= input/i; i += 2)
       {
         if (input % i == 0)
         {

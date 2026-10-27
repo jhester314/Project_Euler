@@ -24,7 +24,8 @@ namespace Project_Euler.Objects_Tests
     [TestCase(9, 3)]
     [TestCase(10, 5)]
     [TestCase(13195, 29)]
-    public void Solve003_ReturnsExpectedResults(int input, long expected)
+    [TestCase(600851475143, 6857)]
+    public void Solve003_ReturnsExpectedResults(long input, long expected)
     {
       var result = _target.Solve(new Problem003Input(input));
 

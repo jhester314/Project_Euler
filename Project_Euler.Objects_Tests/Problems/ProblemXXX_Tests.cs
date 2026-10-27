@@ -4,20 +4,20 @@ using Project_Euler.Objects.Problems;
 namespace Project_Euler.Objects_Tests
 {
   [TestFixture]
-  public class ProblemXXX_Tests
+  public class Problem0XX_Tests
   {
-    private ProblemXXX _target = null!;
+    private Problem0XX _target = null!;
     
     [SetUp]
     public void SetUp()
     {
-      _target = new ProblemXXX();
+      _target = new Problem0XX();
     }
     
     [TestCase(1, 0)]
-    public void SolveXXX_ReturnsExpectedResults(int input, int expected)
+    public void Solve0XX_ReturnsExpectedResults(int input, int expected)
     {
-      var result = _target.Solve(new ProblemXXXInput(input));
+      var result = _target.Solve(new Problem0XXInput(input));
       Assert.That(result, Is.EqualTo(expected));
     } 
     
