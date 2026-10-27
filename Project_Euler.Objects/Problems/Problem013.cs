@@ -6,14 +6,15 @@ namespace Project_Euler.Objects.Problems
 {
   public sealed record Problem013Input([property: Range(1, int.MaxValue)] int Limit);
 
-  public class Problem013 : Problem<Problem013Input, int>
+  public class Problem013 : Problem<Problem013Input, string>
   {
     public override int Number => 13;
     public override string Name => "Large Sum";
 
-    public override int Solve(Problem013Input input)
+    public override string Solve(Problem013Input input)
     {
-      var result = 0;
+      var result = string.Empty;
+      BigInteger sum = 0;
       
       var stringNumbers = new List<string>()
       {
@@ -118,9 +119,17 @@ namespace Project_Euler.Objects.Problems
         "20849603980134001723930671666823555245252804609722",
         "53503534226472524250874054075591789781264330331690"
       };
-
-      var bigNumbers = new List<BigInteger>();
       
+      BigInteger bigInt = 0;
+      foreach(string num in stringNumbers)
+      {
+        if (BigInteger.TryParse(num, out bigInt))
+        {
+          sum += bigInt;
+        }                
+      }
+      
+      result = sum.ToString().Substring(0, 10);
 
       return result;
     }

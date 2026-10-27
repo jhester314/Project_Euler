@@ -14,8 +14,8 @@ namespace Project_Euler.Objects_Tests
       _target = new Problem013();
     }
     
-    [TestCase(1, 0)]
-    public void Solve013_ReturnsExpectedResults(int input, int expected)
+    [TestCase(1, "5537376230")]
+    public void Solve013_ReturnsExpectedResults(int input, string expected)
     {
       var result = _target.Solve(new Problem013Input(input));
       Assert.That(result, Is.EqualTo(expected));
