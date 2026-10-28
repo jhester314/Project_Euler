@@ -16,6 +16,19 @@ namespace Project_Euler.Objects_Tests
     
     [TestCase(1, 1)]
     [TestCase(2, 2)]
+    [TestCase(3, 3)]
+    [TestCase(4, 3)]
+    [TestCase(5, 3)]
+    [TestCase(6, 6)]
+    public void Solve014_ReturnsExpectedResults(int input, int expected)
+    {
+      var result = _target.Solve(new Problem014Input(input));
+      Assert.That(result, Is.EqualTo(result));
+    }
+    
+    
+    [TestCase(1, 1)]
+    [TestCase(2, 2)]
     [TestCase(4, 3)]
     [TestCase(5, 6)]
     [TestCase(13, 10)]
