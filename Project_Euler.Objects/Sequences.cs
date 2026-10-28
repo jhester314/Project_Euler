@@ -58,5 +58,14 @@ namespace Project_Euler.Objects
       return result;
     }
   
+    public static int GetNextCollatzTerm(int n)
+    {
+      var np1 = 1;
+      if (n > 1)
+        np1 = n % 2 == 0 ? n/2 : (3 * n) + 1;
+      
+      return np1;
+    }
+  
   }
 }

@@ -44,6 +44,23 @@ namespace Project_Euler.Objects_Tests
       var results = Sequences.GetNthTriangleTerm(n);
       Assert.That(results, Is.EqualTo(expected));
     }
+    
+    
+    [TestCase(1, 1)]
+    [TestCase(2, 1)]
+    [TestCase(3, 10)]
+    [TestCase(4, 2)]
+    [TestCase(5, 16)]
+    [TestCase(6, 3)]
+    [TestCase(7, 22)]
+    [TestCase(8, 4)]
+    [TestCase(9, 28)]
+    [TestCase(10, 5)]
+    public void GetNextCollatzTerm_ReturnsCorrectResults(int n, int expected)
+    {
+      var results = Sequences.GetNextCollatzTerm(n);
+      Assert.That(results, Is.EqualTo(expected));
+    }
 
   }
 }
