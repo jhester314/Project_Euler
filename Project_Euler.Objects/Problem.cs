@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Project_Euler.Objects
@@ -16,13 +17,29 @@ namespace Project_Euler.Objects
   {
     public abstract int Number { get; }
     public abstract string Name { get; }
+    private static readonly Stopwatch Timer = new();
+
 
     public abstract TResult Solve(TInput input);
 
     public string SolveFromInput(string input)
     {
       var parsedInput = ProblemInputBinder.Bind<TInput>(input);
-      var result = Solve(parsedInput);
+      Timer.Restart();
+      TResult result;
+      try
+      {
+        result = Solve(parsedInput);  
+      }
+      catch(Exception ex)
+      {
+        Log(true, ex.Message);
+        throw;
+      }
+      finally
+      {
+        Timer.Stop();
+      }
 
       return result switch
       {
@@ -31,5 +48,12 @@ namespace Project_Euler.Objects
         _ => result.ToString() ?? string.Empty
       };
     }
+    
+    public void Log(bool debug, string message)
+    {
+      if (debug)
+        Console.WriteLine($"[{Timer.Elapsed:mm\\:ss\\.fff}] {message}");
+    }
+    
   }
 }

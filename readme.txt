@@ -11,7 +11,7 @@ Run the program.
 - Enter the required values and press Enter.
 - The program will calculate the answer and display the result and runtime.
 - Enter a blank line to choose another problem.
-- Enter 0 to exit.
+- Enter 0 or blank line to exit.
 
 Example:
   Enter problem to solve (0 to exit): 1
@@ -19,5 +19,4 @@ Example:
 
 Notes:
 Not every Project Euler problem has been implemented yet.
-If a problem number is not available, the program will tell you.
-This is a simple tool for solving and testing Project Euler challenges.
+If a problem number is not available, the program show a message.

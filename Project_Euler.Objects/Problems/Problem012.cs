@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Project_Euler.Objects.Problems
 {
-  public sealed record Problem012Input([property: Range(1, int.MaxValue)] int DivisorCount);
+  public sealed record Problem012Input([property: Range(1, int.MaxValue)] int DivisorCount, bool Debug = false);
 
   public class Problem012 : Problem<Problem012Input, int>
   {
@@ -15,6 +15,7 @@ namespace Project_Euler.Objects.Problems
     {
       var result = 0;
       var triangleNum = 1;
+      var highestDivisor = 0;
       
       if (input.DivisorCount < 2)
       {
@@ -26,22 +27,25 @@ namespace Project_Euler.Objects.Problems
         {
           triangleNum += i;
           
-          var factorList = Tools.FactorWithDistinctCounts(triangleNum);
+          var factorCounts = Tools.FactorWithDistinctCounts(triangleNum);
           
           var numberOfDivisors = 1;
-          foreach(var factor in factorList)
+          foreach(var factor in factorCounts)
           {
             numberOfDivisors *= (factor.Value + 1);
           }
           
-          if (numberOfDivisors >= input.DivisorCount)
+          if (numberOfDivisors > highestDivisor)
           {
-            result = triangleNum;
-            //Console.WriteLine($"i: {i}  | triangleNumber: {triangleNum} | divisors: {numberOfDivisors}");
+            highestDivisor = numberOfDivisors;
+            Log(input.Debug, $"New HighestDivisor: {highestDivisor} | i: {i}  | triangleNumber: {triangleNum}");
           }
+          
+          if (highestDivisor >= input.DivisorCount)
+            result = triangleNum;
                       
-          // if (i % 10 == 0)
-          //   Console.WriteLine($"i: {i}  | triangleNumber: {triangleNum} | divisors: {numberOfDivisors}");
+          if (i % 1000 == 0)
+             Log(input.Debug, $"Progress - i: {i}  | triangleNumber: {triangleNum} | divisors: {numberOfDivisors}");
         }
       }      
 

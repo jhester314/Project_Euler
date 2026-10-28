@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Project_Euler.Objects.Problems
 {
-  public sealed record Problem011Input([property: Range(1, 20)] int Offset);
+  public sealed record Problem011Input([property: Range(1, 20)] int Offset, bool Debug = false);
 
   public class Problem011 : Problem<Problem011Input, int>
   {
@@ -37,7 +37,7 @@ namespace Project_Euler.Objects.Problems
       
       var grid = Tools.ConvertBlobToMatrix(blob);
       
-      // Check vertical (offset down)
+      Log(input.Debug, "Check vertical (offset down)");
       for(int row = 0; row <= grid.GetLength(0) - input.Offset; row++)
       {
         for (int column = 0; column < grid.GetLength(1); column++)
@@ -50,12 +50,12 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            //Console.WriteLine($"Result updated (vertical): {result} | row: {row} | column: {column}");
+            Log(input.Debug, $"Result updated (vertical): {result} | row: {row} | column: {column}");
           }
         }
       }
       
-      // Check horizontal (offset right)
+      Log(input.Debug, "Check horizontal (offset right)");
       for(int row = 0; row < grid.GetLength(0); row++)
       {
         for (int column = 0; column <= grid.GetLength(1) - input.Offset; column++)
@@ -68,12 +68,12 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            //Console.WriteLine($"Result updated (horizontal): {result} | row: {row} | column: {column}");
+            Log(input.Debug, $"Result updated (horizontal): {result} | row: {row} | column: {column}");
           }
         }
       }
       
-      // Check diagonal (offset down & right)
+      Log(input.Debug, "Check diagonal (offset down & right)");
       for(int row = 0; row <= grid.GetLength(0) - input.Offset; row++)
       {
         for (int column = 0; column <= grid.GetLength(1) - input.Offset; column++)
@@ -86,12 +86,12 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            //Console.WriteLine($"Result updated (diag down & right): {result} | row: {row} | column: {column}");
+            Log(input.Debug, $"Result updated (diag down & right): {result} | row: {row} | column: {column}");
           }
         }
       }
       
-      // Check diagonal (offset down & left)
+      Log(input.Debug, "Check diagonal (offset down & left)");
       for(int row = 0; row <= grid.GetLength(0) - input.Offset; row++)
       {
         for (int column = input.Offset - 1; column < grid.GetLength(1); column++)
@@ -104,7 +104,7 @@ namespace Project_Euler.Objects.Problems
           if (tempResult > result)
           {
             result = tempResult;
-            //Console.WriteLine($"Result updated (diag down & left): {result} | row: {row} | column: {column}");
+            Log(input.Debug, $"Result updated (diag down & left): {result} | row: {row} | column: {column}");
           }
         }
       }

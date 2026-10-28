@@ -29,15 +29,24 @@ namespace Project_Euler.Objects
       var constructor = constructors[0];
       var parameters = constructor.GetParameters();
 
-      if (values.Count != parameters.Length)
-      {
-        var expected = string.Join(
-          " ",
-          parameters.Select(parameter =>
-            $"<{parameter.ParameterType.Name} {parameter.Name}>"));
+      var hasOptionalDebug =
+        parameters.Length > 0 &&
+        string.Equals(parameters[^1].Name, "Debug", StringComparison.Ordinal) &&
+        parameters[^1].ParameterType == typeof(bool) &&
+        parameters[^1].IsOptional &&
+        parameters[^1].HasDefaultValue &&
+        Equals(parameters[^1].DefaultValue, false);
 
+      var requiredParameterCount = parameters.Length - (hasOptionalDebug ? 1 : 0);
+
+      if (values.Count != requiredParameterCount &&
+          !(hasOptionalDebug && values.Count == parameters.Length))
+      {
+        // Keep the existing input-shape error handling, updated to mention
+        // the two accepted counts when Debug is optional.
         throw new FormatException(
-          $"Expected {parameters.Length} value(s): {expected}. " +
+          $"Expected {requiredParameterCount} value(s): {string.Join(" ", parameters.Select(parameter =>
+            $"<{parameter.ParameterType.Name} {parameter.Name}>"))}. " +
           $"Received {values.Count}. Enclose values containing spaces in double quotes.");
       }
 
@@ -46,6 +55,26 @@ namespace Project_Euler.Objects
       for (var i = 0; i < parameters.Length; i++)
       {
         var parameter = parameters[i];
+
+        if (hasOptionalDebug && i == parameters.Length - 1)
+        {
+          if (values.Count == requiredParameterCount)
+          {
+            convertedValues[i] = parameter.DefaultValue;
+          }
+          else
+          {
+            convertedValues[i] = values[i] switch
+            {
+              "0" => false,
+              "1" => true,
+              _ => throw new FormatException("Debug must be 0 or 1.")
+            };
+          }
+
+          continue;
+        }
+
         var destinationType =
           Nullable.GetUnderlyingType(parameter.ParameterType) ?? parameter.ParameterType;
 
