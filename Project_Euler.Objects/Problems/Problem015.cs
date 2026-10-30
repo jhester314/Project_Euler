@@ -16,11 +16,8 @@ namespace Project_Euler.Objects.Problems
     public override long Solve(Problem015Input input)
     {
       long result = 0;
-      for(int i = 1; i <= input.Limit; i++)
-      {
-        result = GetLatticeScore(i, i);
-        Log(input.Debug, $"i: {i} | score: {result}");
-      }
+      
+      result = GetLatticeScore(input.Limit, input.Limit);      
 
       return result;
     }
@@ -36,7 +33,7 @@ namespace Project_Euler.Objects.Problems
       }
       
       var nm = new Tuple<int, int>(n, m);
-      if (m == 1)
+      if (m <= 1)
       {
         result = n + 1;
       }      
