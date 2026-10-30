@@ -150,6 +150,21 @@ namespace Project_Euler.Objects_Tests
       Assert.That(result[3, 0], Is.EqualTo(52));
     }
     
+    [TestCase(1, "one")]
+    [TestCase(13, "thirteen")]
+    [TestCase(42, "forty-two")]
+    [TestCase(100, "one hundred")]
+    [TestCase(101, "one hundred and one")]
+    [TestCase(342, "three hundred and forty-two")]
+    [TestCase(999, "nine hundred and ninety-nine")]
+    [TestCase(1000, "one thousand")]
+    [TestCase(1123, "one thousand one hundred and twenty-three")]
+    public void ConvertToEnglish_ReturnsExpectedResults(int input, string expected)
+    {
+      var result = Tools.ConvertToEnglish(input);
+      Assert.That(result, Is.EqualTo(expected));
+    }
+    
     #endregion
     
   }

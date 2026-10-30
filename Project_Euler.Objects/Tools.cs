@@ -192,6 +192,79 @@ namespace Project_Euler.Objects
 
       return result;
     }
+    
+    public static string ConvertToEnglish(int i)
+    {
+      var result = string.Empty;
+      
+      if (i <= 20)
+      {
+        result = _englishWords[i];
+      }
+      else if (i < 100)
+      {
+        var onesPlace = i % 10;
+        var tensPlace = (i / 10) * 10;
+        result = (onesPlace > 0) 
+          ? $"{_englishWords[tensPlace]}-{ConvertToEnglish(i%10)}"
+          : _englishWords[tensPlace];
+      }
+      else if (i < 1000)
+      {
+        var hundredsDigit = i / 100;
+        var tensDigits = i % 100;
+        result = (tensDigits > 0) 
+          ? $"{_englishWords[hundredsDigit]} {_englishWords[100]} and {ConvertToEnglish(tensDigits)}"
+          : $"{_englishWords[hundredsDigit]} {_englishWords[100]}";
+      }
+      else
+      {
+        var thousandsDigit = i / 1000;
+        var otherDigits = i % 1000;
+        result = (otherDigits > 0) 
+          ? $"{_englishWords[thousandsDigit]} {_englishWords[1000]} {ConvertToEnglish(otherDigits)}"
+          : $"{_englishWords[thousandsDigit]} {_englishWords[1000]}";
+      }
+      
+      return result;
+    }
+    
+    private static Dictionary<int, string> _englishWords = new Dictionary<int, string>()
+    {
+      {0, ""},
+      {1, "one"}, 
+      {2, "two"}, 
+      {3, "three"}, 
+      {4, "four"}, 
+      {5, "five"}, 
+      {6, "six"}, 
+      {7, "seven"}, 
+      {8, "eight"}, 
+      {9, "nine"}, 
+      
+      {10, "ten"}, 
+      {11, "eleven"}, 
+      {12, "twelve"}, 
+      {13, "thirteen"}, 
+      {14, "fourteen"}, 
+      {15, "fifteen"}, 
+      {16, "sixteen"}, 
+      {17, "seventeen"}, 
+      {18, "eighteen"}, 
+      {19, "nineteen"}, 
+      
+      {20, "twenty"}, 
+      {30, "thirty"}, 
+      {40, "forty"}, 
+      {50, "fifty"}, 
+      {60, "sixty"}, 
+      {70, "seventy"}, 
+      {80, "eighty"}, 
+      {90, "ninety"}, 
+      
+      {100, "hundred"},
+      {1000, "thousand"},
+    };
 
     #endregion
     
