@@ -17,7 +17,7 @@ namespace Project_Euler.Objects_Tests
     [TestCase(1, 0)]
     public void Solve0XX_ReturnsExpectedResults(int input, int expected)
     {
-      var result = _target.Solve(new Problem0XXInput(input));
+      var result = _target.Solve(new Problem0XXInput(input, true));
       Assert.That(result, Is.EqualTo(expected));
     } 
     
