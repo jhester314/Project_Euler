@@ -23,5 +23,18 @@ namespace Project_Euler.Objects_Tests
       Assert.That(result, Is.EqualTo(expected));
     } 
     
+    [TestCase(1, 1, 2)]
+    [TestCase(2, 1, 3)]
+    [TestCase(1, 2, 3)]
+    [TestCase(2, 2, 6)]
+    [TestCase(3, 2, 10)]
+    [TestCase(2, 3, 10)]
+    [TestCase(3, 3, 20)]
+    public void GetLatticeScore_ReturnsExpectedResults(int n, int m, long expected)
+    {
+      var result = _target.GetLatticeScore(n, m);
+      Assert.That(result, Is.EqualTo(expected));
+    }
+    
   }  
 }
