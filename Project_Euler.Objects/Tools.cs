@@ -167,7 +167,7 @@ namespace Project_Euler.Objects
         return new int[0, 0];
 
       var valuesByRow = new string[rows.Length][];
-      var columnCount = -1;
+      var columnCount = 0;
 
       for (int row = 0; row < rows.Length; row++)
       {
@@ -175,18 +175,14 @@ namespace Project_Euler.Objects
           new[] { ' ', '\t' },
           System.StringSplitOptions.RemoveEmptyEntries);
 
-        if (columnCount == -1)
-          columnCount = valuesByRow[row].Length;
-        else if (valuesByRow[row].Length != columnCount)
-          throw new System.FormatException(
-            $"Expected {columnCount} values in row {row + 1}, but found {valuesByRow[row].Length}.");
+        columnCount = System.Math.Max(columnCount, valuesByRow[row].Length);
       }
 
       var result = new int[rows.Length, columnCount];
 
       for (int row = 0; row < rows.Length; row++)
       {
-        for (int column = 0; column < columnCount; column++)
+        for (int column = 0; column < valuesByRow[row].Length; column++)
           result[row, column] = int.Parse(valuesByRow[row][column]);
       }
 
@@ -270,4 +266,3 @@ namespace Project_Euler.Objects
     
   }
 }
-

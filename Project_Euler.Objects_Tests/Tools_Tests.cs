@@ -149,6 +149,31 @@ namespace Project_Euler.Objects_Tests
       Assert.That(result[2, 1], Is.EqualTo(49));
       Assert.That(result[3, 0], Is.EqualTo(52));
     }
+
+    [Test]
+    public void ConvertBlobToMatrix_PadsShortRowsWithZeros()
+    {
+      var blob = @" 3
+                    7 4
+                    2 4 6
+                    8 5 9 3";
+
+      var result = Tools.ConvertBlobToMatrix(blob);
+
+      Assert.That(result.GetLength(0), Is.EqualTo(4));
+      Assert.That(result.GetLength(1), Is.EqualTo(4));
+      Assert.That(result[0, 0], Is.EqualTo(3));
+      Assert.That(result[0, 1], Is.Zero);
+      Assert.That(result[0, 2], Is.Zero);
+      Assert.That(result[0, 3], Is.Zero);
+      Assert.That(result[1, 0], Is.EqualTo(7));
+      Assert.That(result[1, 1], Is.EqualTo(4));
+      Assert.That(result[1, 2], Is.Zero);
+      Assert.That(result[1, 3], Is.Zero);
+      Assert.That(result[2, 2], Is.EqualTo(6));
+      Assert.That(result[2, 3], Is.Zero);
+      Assert.That(result[3, 3], Is.EqualTo(3));
+    }
     
     [TestCase(1, "one")]
     [TestCase(13, "thirteen")]

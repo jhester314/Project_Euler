@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 
 namespace Project_Euler.Objects.Problems
 {
@@ -18,13 +19,31 @@ namespace Project_Euler.Objects.Problems
       
       if (File.Exists(filePath))
       {
-        var text = File.ReadAllLines(filePath);
-        if (text.Length > 0)
+        var blob = File.ReadAllText(filePath);
+        if (blob.Length > 0)
         {
-          Log(input.Debug, $"File {input.FileName} loaded, processing {text.Length} lines..");
+          var triangle = Tools.ConvertBlobToMatrix(blob);
+          var pathValues = new int[triangle.GetLength(1)];
+          var rowPathValues = new int[triangle.GetLength(1)];
           
-          result = 23;
+          Log(input.Debug, $"File {input.FileName} loaded, processing {triangle.Length} elements..");
           
+          for(int row = 0; row < triangle.GetLength(0); row++)
+          {
+            for(int column = 0; column < triangle.GetLength(1); column++)
+            {
+              var higherPathA = (column > 0) ? pathValues[column-1] : 0;
+              var higherPathB = pathValues[column];
+              var higherPath = Math.Max(higherPathA, higherPathB);
+              
+              var current = triangle[row, column];              
+              rowPathValues[column] = current + higherPath;              
+            }
+            pathValues = (int[])rowPathValues.Clone();
+            rowPathValues = new int[triangle.GetLength(1)];
+          }
+          
+          result = pathValues.Max(x => x);          
         }
         else
         {
