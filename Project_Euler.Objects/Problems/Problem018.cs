@@ -14,10 +14,11 @@ namespace Project_Euler.Objects.Problems
     public override int Solve(Problem018Input input)
     {
       var result = 0;
+      var filePath = Path.Combine(AppContext.BaseDirectory, "Data", input.FileName);
       
-      if (File.Exists($"Data/{input.FileName}"))
+      if (File.Exists(filePath))
       {
-        var text = File.ReadAllLines($"Data/{input.FileName}");
+        var text = File.ReadAllLines(filePath);
         if (text.Length > 0)
         {
           Log(input.Debug, $"File {input.FileName} loaded, processing {text.Length} lines..");
