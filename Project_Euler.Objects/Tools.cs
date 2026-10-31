@@ -193,37 +193,37 @@ namespace Project_Euler.Objects
       return result;
     }
     
-    public static string ConvertToEnglish(int i)
+    public static string ConvertToEnglish(int n)
     {
       var result = string.Empty;
       
-      if (i <= 20)
+      if (n >= 1000)
       {
-        result = _englishWords[i];
+        var thousandsDigit = n / 1000;
+        n %= 1000;
+        result = $"{_englishWords[thousandsDigit]} {_englishWords[1000]}";
+        if (n > 0) result += " ";
       }
-      else if (i < 100)
+      
+      if (n >= 100)
       {
-        var onesPlace = i % 10;
-        var tensPlace = (i / 10) * 10;
-        result = (onesPlace > 0) 
-          ? $"{_englishWords[tensPlace]}-{ConvertToEnglish(i%10)}"
-          : _englishWords[tensPlace];
+        var hundredsDigit = n / 100;
+        n %= 100;
+        result += $"{_englishWords[hundredsDigit]} {_englishWords[100]}";
+        if (n > 0) result += " and ";
       }
-      else if (i < 1000)
+      
+      if (n > 20)
       {
-        var hundredsDigit = i / 100;
-        var tensDigits = i % 100;
-        result = (tensDigits > 0) 
-          ? $"{_englishWords[hundredsDigit]} {_englishWords[100]} and {ConvertToEnglish(tensDigits)}"
-          : $"{_englishWords[hundredsDigit]} {_englishWords[100]}";
+        var tensNumber = (n / 10) * 10;
+        n %= 10;
+        result += $"{_englishWords[tensNumber]}";
+        if (n > 0) result += "-";
       }
-      else
+      
+      if (n > 0)
       {
-        var thousandsDigit = i / 1000;
-        var otherDigits = i % 1000;
-        result = (otherDigits > 0) 
-          ? $"{_englishWords[thousandsDigit]} {_englishWords[1000]} {ConvertToEnglish(otherDigits)}"
-          : $"{_englishWords[thousandsDigit]} {_englishWords[1000]}";
+        result += _englishWords[n];
       }
       
       return result;
@@ -265,7 +265,7 @@ namespace Project_Euler.Objects
       {100, "hundred"},
       {1000, "thousand"},
     };
-
+    
     #endregion
     
   }

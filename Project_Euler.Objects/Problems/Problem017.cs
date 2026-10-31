@@ -12,7 +12,14 @@ namespace Project_Euler.Objects.Problems
     public override int Solve(Problem017Input input)
     {
       var result = 0;
+      var english = string.Empty;
       
+      for(int i = 1; i <= input.Limit; i++)
+      {
+        english = Tools.ConvertToEnglish(i);
+        english = english.Replace(" ", "").Replace("-", "");
+        result += english.Length;
+      }
 
       return result;
     }

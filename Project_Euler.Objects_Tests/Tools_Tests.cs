@@ -152,6 +152,7 @@ namespace Project_Euler.Objects_Tests
     
     [TestCase(1, "one")]
     [TestCase(13, "thirteen")]
+    [TestCase(40, "forty")]
     [TestCase(42, "forty-two")]
     [TestCase(100, "one hundred")]
     [TestCase(101, "one hundred and one")]
