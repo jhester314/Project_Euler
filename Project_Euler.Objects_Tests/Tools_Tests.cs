@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Project_Euler.Objects;
 
@@ -82,6 +83,26 @@ namespace Project_Euler.Objects_Tests
     {
       var result = Tools.IsPrime(input);
       Assert.That(result, Is.EqualTo(expected));
+    }
+    
+    private static IEnumerable<TestCaseData> GetDivisorsCases()
+    {
+      yield return new TestCaseData(1L, new List<long> { 1L });
+      yield return new TestCaseData(2L, new List<long> { 1L, 2L });
+      yield return new TestCaseData(3L, new List<long> { 1L, 3L });
+      yield return new TestCaseData(6L, new List<long> { 1L, 2L, 3L, 6L });
+      yield return new TestCaseData(8L, new List<long> { 1L, 2L, 4L, 8L });
+      yield return new TestCaseData(9L, new List<long> { 1L, 3L, 9L });
+      yield return new TestCaseData(36L, new List<long> { 1L, 2L, 3L, 4L, 6L, 9L, 12L, 18L, 36L });
+    }
+    
+    [TestCaseSource(nameof(GetDivisorsCases))]
+    public void GetDivisors_ReturnsCorrectResult(long input, List<long> expected)
+    {
+      var results = Tools.GetDivisors(input);
+      Assert.That(results.Count, Is.EqualTo(expected.Count));
+      Assert.That(results.All(x => expected.Contains(x)));
+      Assert.That(expected.All(x => results.Contains(x)));
     }
     
     #endregion

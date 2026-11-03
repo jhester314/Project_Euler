@@ -90,6 +90,28 @@ namespace Project_Euler.Objects
       return result;
     }
 
+    public static List<long> GetDivisors(long input)
+    {
+      var result = new List<long>();
+      var factors = Factor(input).ToArray();
+      
+      for(int mask = 0; mask < (1 << factors.Length); mask++)
+      {
+        long product = 1;        
+        for(int index = 0; index < factors.Length; index++)
+        {
+          if ((mask & (1 << index)) > 0)
+          {
+            product *= factors[index];
+          }
+        }
+        if (!result.Contains(product))
+          result.Add(product);  
+      }
+      
+      return result;
+    }
+    
     #endregion
 
     public static int GetLargestPalindromeProduct(int limit)
