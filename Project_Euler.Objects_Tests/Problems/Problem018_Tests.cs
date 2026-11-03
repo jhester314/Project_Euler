@@ -19,7 +19,7 @@ namespace Project_Euler.Objects_Tests
     {
       var testFileName = "0018_triangle_test.txt";
       var expected = 23;
-      var result = _target.Solve(new Problem018Input(testFileName, true));
+      var result = _target.Solve(new Problem018Input(testFileName, false));
       Assert.That(result, Is.EqualTo(expected));
     } 
     
