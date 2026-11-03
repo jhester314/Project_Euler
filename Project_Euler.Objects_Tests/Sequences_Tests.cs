@@ -61,6 +61,16 @@ namespace Project_Euler.Objects_Tests
       var results = Sequences.GetNextCollatzTerm(n);
       Assert.That(results, Is.EqualTo(expected));
     }
+    
+    [TestCase(1, 1)]
+    [TestCase(2, 2)]
+    [TestCase(3, 6)]
+    [TestCase(10, 3628800)]
+    public void GetNthFactorial_ReturnsCorrectResults(int n, int expected)
+    {
+      var results = Sequences.GetNthFactorial(n);
+      Assert.That(results, Is.EqualTo((BigInteger)expected));
+    }
 
   }
 }

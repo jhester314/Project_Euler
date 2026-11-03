@@ -66,6 +66,17 @@ namespace Project_Euler.Objects
       
       return np1;
     }
+    
+    public static BigInteger GetNthFactorial(long n)
+    {
+      BigInteger result = 1;
+      for(long i = 1; i <= n; i++)
+      {
+        result *= i;
+      }      
+      
+      return result;
+    }
   
   }
 }
