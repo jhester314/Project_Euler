@@ -284,6 +284,22 @@ namespace Project_Euler.Objects
       {1000, "thousand"},
     };
     
+    public static int GetNameScore(string input)
+    {
+      var result = 0;      
+      foreach(char c in input)
+      {
+        result += LetterValue(c);
+      }
+      
+      return result;
+    }
+    
+    public static int LetterValue(char c)
+    {
+      return char.ToUpper(c) - 'A' + 1;
+    }
+    
     #endregion
     
   }

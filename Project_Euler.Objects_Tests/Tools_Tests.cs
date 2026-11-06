@@ -212,6 +212,17 @@ namespace Project_Euler.Objects_Tests
       Assert.That(result, Is.EqualTo(expected));
     }
     
+    [TestCase("A", 1)]
+    [TestCase("a", 1)]
+    [TestCase("B", 2)]
+    [TestCase("ABC", 6)]
+    [TestCase("COLIN", 53)]
+    public void GetNameScore_ReturnsExpectedResults(string input, int expected)
+    {
+      var result = Tools.GetNameScore(input);
+      Assert.That(result, Is.EqualTo(expected));
+    }
+    
     #endregion
     
   }
