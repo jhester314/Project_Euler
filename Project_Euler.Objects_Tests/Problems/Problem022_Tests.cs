@@ -14,10 +14,12 @@ namespace Project_Euler.Objects_Tests
       _target = new Problem022();
     }
     
-    [TestCase(1, 0)]
-    public void Solve022_ReturnsExpectedResults(int input, int expected)
+    [Test]
+    public void Solve022_ReturnsExpectedResults()
     {
-      var result = _target.Solve(new Problem022Input(input, true));
+      var input = "0022_names_test.txt";
+      var expected = 172;
+      var result = _target.Solve(new Problem022Input(input, false));
       Assert.That(result, Is.EqualTo(expected));
     } 
     

@@ -52,8 +52,7 @@ namespace Project_Euler.Objects.Problems
       }
       else
       {
-        var currentDir = Environment.CurrentDirectory;
-        throw new FileNotFoundException($"File {input.FileName} could not be found in {currentDir}.");
+        Log(true, $"File {input.FileName} could not be found in {AppContext.BaseDirectory}\\Data.");
       }
       
       return result;
