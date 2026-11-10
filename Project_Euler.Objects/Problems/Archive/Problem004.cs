@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Project_Euler.Objects.Problems
 {
-  public sealed record Problem004Input([property: Range(1, int.MaxValue)] int Digits);
+  public sealed record Problem004Input([property: Range(1, int.MaxValue)] int Limit);
 
   public class Problem004 : Problem<Problem004Input, int>
   {
@@ -11,9 +11,25 @@ namespace Project_Euler.Objects.Problems
 
     public override int Solve(Problem004Input input)
     {
-      var result = Tools.GetLargestPalindromeProduct(input.Digits);
+      var result = 0;
+      var product = 0;
+
+      for (int i = input.Limit; i > 0; i--)
+      {
+        for (int j = i; j > 0; j--)
+        {
+          product = i * j;
+          
+          if (Tools.IsPalindrome(product) && product > result)
+          {
+            result = product;
+          }
+        }
+      }
+
       return result;
     }
+        
   }
 }
 

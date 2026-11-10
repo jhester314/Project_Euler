@@ -114,26 +114,6 @@ namespace Project_Euler.Objects
     
     #endregion
 
-    public static int GetLargestPalindromeProduct(int limit)
-    {
-      var result = 0;
-      var product = 0;
-
-      for (int i = limit; i > 0; i--)
-      {
-        for (int j = i; j > 0; j--)
-        {
-          product = i * j;
-          
-          if (IsPalindrome(product) && product > result)
-          {
-            result = product;
-          }
-        }
-      }
-
-      return result;
-    }
     
     public static bool IsPalindrome(int input)
     {

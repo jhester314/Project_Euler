@@ -107,18 +107,6 @@ namespace Project_Euler.Objects_Tests
     
     #endregion
     
-    [TestCase(-1, 0)]
-    [TestCase(0, 0)]
-    [TestCase(1, 1)]
-    [TestCase(9, 9)]
-    [TestCase(11, 121)]
-    [TestCase(99, 9009)]
-    public void GetLargestPalindromeProduct_ReturnsCorrectResult(int input, int expected)
-    {
-      var results = Tools.GetLargestPalindromeProduct(input);
-      Assert.That(results, Is.EqualTo(expected));
-    }
-    
     
     [TestCase(-1, false)]
     [TestCase(0, true)]
