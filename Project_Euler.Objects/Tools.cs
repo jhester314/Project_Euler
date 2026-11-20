@@ -113,7 +113,6 @@ namespace Project_Euler.Objects
     }
     
     #endregion
-
     
     public static bool IsPalindrome(int input)
     {
@@ -135,6 +134,18 @@ namespace Project_Euler.Objects
       
       return result;
     }
+
+    public static bool IsAbundant(int input)
+    {
+      var result = false;
+      
+      var divisors = GetDivisors(input);
+      divisors.Remove(input);
+      result = divisors.Sum() > input;
+      
+      return result;
+    }
+
 
     #region String manipulation stuff
 

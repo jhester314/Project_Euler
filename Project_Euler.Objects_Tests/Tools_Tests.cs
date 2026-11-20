@@ -125,7 +125,17 @@ namespace Project_Euler.Objects_Tests
     {
       var results = Tools.IsPalindrome(input);
       Assert.That(results, Is.EqualTo(expected));
-    }    
+    }
+    
+    [TestCase(1, false)]
+    [TestCase(9, false)]
+    [TestCase(12, true)]
+    [TestCase(28, false)]
+    public void IsAbundant_ReturnsCorrectResult(int input, bool expected)
+    {
+      var results = Tools.IsAbundant(input);
+      Assert.That(results, Is.EqualTo(expected));
+    }
     
     #region String manipulation stuff
     
